@@ -1,0 +1,18 @@
+!!! 5
+%html
+  %head
+    %title=@title || 'ShrGallery'
+    = stylesheet_link_tag 'shr_gallery/application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'shr_gallery/application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .navbar.navbar-inverse
+      .container
+        .navbar-header
+          %a.navbar-brand(href=root_path) TestApp
+        .collapse.navbar-collapse
+          %ui.nav.navbar-nav
+            %li
+              %a(href=root_path) Home
+    .container
+      = yield

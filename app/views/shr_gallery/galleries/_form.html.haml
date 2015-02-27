@@ -1,0 +1,44 @@
+= form_for(@gallery, :class=>'uploaded') do |f|
+  .form-horizontal
+    = render partial: 'shr_gallery/errors', locals: {errors: @gallery.errors}
+    //Name
+    .form-group
+      .col-sm-2.control-label
+        = f.label :name, 'Name *'
+      .col-sm-8
+        = f.text_field :name, :class => 'form-control content_title'
+
+    //Slug
+    .form-group
+      .col-sm-2.control-label
+        = f.label :slug, 'Slug *'
+      .col-sm-8
+        = f.text_field :slug, :class => 'form-control'
+    //File
+    .form-group
+      .col-sm-2.control-label
+        = f.label :image, 'Image *'
+      .col-sm-8.browse_file
+        %span#browse.btn.btn-default.btn-block.form-control.content_file
+          %i.glyphicon.glyphicon-plus
+          %span Обзор
+        = f.file_field :image, :class => 'form-control'
+    .form-group
+      .col-sm-2.control-label
+        = f.label :description, 'Description'
+      .col-sm-8.browse
+        = text_area_tag 'gallery[description]', f.object.description, :class => 'form-control'
+    //Notice
+    .form-group
+      .col-sm-offset-2.col-sm-8
+        %em.small * - required fields
+
+    //Submit
+    .actions.form-group
+      .col-sm-offset-2.col-sm-10
+        %button#submit.btn.btn-success
+          %i.glyphicon.glyphicon-ok-sign
+          %span Save
+        %a.btn.btn-primary(href=galleries_path)
+          %i.glyphicon.glyphicon-arrow-left
+          %span Back

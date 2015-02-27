@@ -1,0 +1,24 @@
+- if notice
+  %p#notice.alert.alert-info=notice
+
+%h1= @image.name
+
+.show_content
+  .row.show-grid
+    .col-md-2
+      %strong Alt
+    .col-md-4=@image.alt
+    .col-md-3.pull-right
+      = render :partial => 'shr_gallery/control_buttons', :locals => {show_path: gallery_image_path(@image.gallery, @image), index_path: gallery_path(@image.gallery), edit_path: edit_gallery_image_path(@image.gallery, @image)}
+
+  .row.show-grid
+    .col-md-2
+      %strong Image
+  .row.show-grid
+    .col-md-10
+      = image_tag @image.image.large.url
+  - if @image.description.present?
+    .row.show-grid
+      .col-md-2
+        %strong Descripions
+      .col-md-6= @image.description

@@ -1,0 +1,36 @@
+= form_for(@image, url: gallery_image_path(@image.gallery, @image)) do |f|
+  .form-horizontal
+    = render partial: 'shr_gallery/errors', locals: {errors: @image.errors}
+    //Name
+    .form-group
+      .col-sm-2.control-label
+        = f.label :name, 'Name *'
+      .col-sm-8
+        = f.text_field :name, :class => 'form-control content_title'
+
+    //Slug
+    .form-group
+      .col-sm-2.control-label
+        = f.label :alt, 'Alt'
+      .col-sm-8
+        = f.text_field :alt, :class => 'form-control'
+    //Description
+    .form-group
+      .col-sm-2.control-label
+        = f.label :description, 'Description'
+      .col-sm-8.browse
+        = text_area_tag 'image[description]', f.object.description, :class => 'form-control'
+    //Notice
+    .form-group
+      .col-sm-offset-2.col-sm-8
+        %em.small * - required fields
+
+    //Submit
+    .actions.form-group
+      .col-sm-offset-2.col-sm-10
+        %button#submit.btn.btn-success
+          %i.glyphicon.glyphicon-ok-sign
+          %span Save
+        %a.btn.btn-primary(href="#{gallery_image_path(@image.gallery, @image)}")
+          %i.glyphicon.glyphicon-arrow-left
+          %span Back

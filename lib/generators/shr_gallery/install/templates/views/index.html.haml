@@ -1,0 +1,11 @@
+%h1 Galleries
+.row.show-grid
+  - @galleries.each do |gallery|
+    .col-md-4.text-center
+      .thumbnail
+        = image_tag gallery.image.thumb.url
+        .caption
+          %h3=gallery.name
+          %p=gallery.description
+          %p
+            %a.btn.btn-primary(href="#{gallery_path(gallery.slug)}") Show

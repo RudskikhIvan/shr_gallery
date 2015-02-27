@@ -1,0 +1,34 @@
+- if notice
+  %p#notice.alert.alert-info=notice
+%h1 Galleries
+
+- if @galleries.blank?
+  .empty-info
+    %h3 There are no gallery yet.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th Name
+        %th Slug
+        %th Image Size
+        %th Images count
+        %th
+    %tbody
+      - @galleries.each do |gallery|
+        %tr
+          %td=gallery.id
+          %td
+            %span= link_to gallery.name, gallery
+          %td=gallery.slug
+          %td=number_to_human_size(gallery.image.size)
+          %td=gallery.images.size
+          %td
+            = link_to('Remove', gallery, {:method => :delete, 'data-confirm' => 'Do you want to remove this gallery?', :class => 'btn btn-warning btn-xs'})
+            = link_to('Edit', edit_gallery_path(gallery), :class => 'btn btn-success btn-xs')
+            = link_to('Add Images', load_images_gallery_path(gallery), :class => 'btn btn-primary btn-xs')
+
+%a.btn.btn-primary(href=new_gallery_path)
+  %i.glyphicon.glyphicon-plus
+  %span New Gallery

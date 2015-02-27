@@ -1,0 +1,9 @@
+%h1= @gallery.name
+.row.show-grid
+  - @gallery.images.each do |image|
+    .col-md-3.text-center
+      .thumbnail
+        = image_tag image.image.thumb.url
+        .caption
+          %h3=image.name
+          %p=image.description

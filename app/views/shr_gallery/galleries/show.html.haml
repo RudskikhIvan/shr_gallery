@@ -1,0 +1,32 @@
+- if notice
+  %p#notice.alert.alert-info=notice
+
+%h1= @gallery.name
+
+.show_content
+  .row.show-grid
+    .col-md-2
+      %strong Slug
+    .col-md-4=@gallery.slug
+    .col-md-3.pull-right
+      = render :partial => 'shr_gallery/control_buttons', :locals => {show_path: gallery_path(@gallery), index_path: galleries_path, edit_path: edit_gallery_path(@gallery)}
+
+  .row.show-grid
+    .col-md-2
+      %strong Image
+    .col-md-6
+      %a(href="#{@gallery.image.url}" target='_blank')
+        = image_tag @gallery.image.thumb.url
+  - if @gallery.description.present?
+    .row.show-grid
+      .col-md-2
+        %strong Descripions
+      .col-md-6= @gallery.description
+  .row.show-grid
+    .col-md-2
+      %strong Images:
+  .row.show-grid
+    - @gallery.images.each do |image|
+      .col-md-3.text-center
+        %a(href="#{gallery_image_path(@gallery, image)}")
+          = image_tag image.image.thumb.url

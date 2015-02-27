@@ -1,0 +1,14 @@
+%h1 Images loading for #{@gallery.name}
+.show-grid
+  #uploader
+.show-grid
+  %a.btn.btn-primary(href=galleries_path)
+    %i.glyphicon.glyphicon-arrow-left
+    %span Back
+
+:javascript
+  $(function(){
+    new App.ImagesLoader($('#uploader'), {
+      url: '#{gallery_images_path(@gallery)}'
+    })
+  })
