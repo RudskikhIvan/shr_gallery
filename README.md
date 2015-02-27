@@ -17,9 +17,6 @@ After it:
 $ bundle
 $ rake shr_gallery:install
 ```
-Now You cat login: http://0.0.0.0:3000/admin
-login: admin@test.com
-password: admin
 
 You may add root route if need:
 ``` ruby
